@@ -44,3 +44,8 @@
     </div>    
 </div>
 @endsection
+@section('js')
+<script>
+    console.log($('body'));
+</script>
+@endsection
