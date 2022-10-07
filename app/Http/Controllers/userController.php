@@ -15,8 +15,7 @@ class userController extends Controller
     }
 
     public function index(){
-        // return view('login');
-        return view('master');
+        return view('menus/login');
     }
 
 }

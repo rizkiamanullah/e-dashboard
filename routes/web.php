@@ -1,8 +1,8 @@
 <?php
 
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::controller(homeController::class)->group(function(){
+    Route::get('login','login')->name('login');
+    Route::get('create_account','signup')->name('signup');
+    Route::get('logout','logout')->name('logout')->middleware('auth');
+    Route::post('post_login','post_login')->name('post_login');
+    Route::post('post_signup','post_signup')->name('post_signup');
 
-// Route::get('/', function () {
-//     return view();
-// });
-Route::get('/', [userController::class, 'index']);
+    Route::get('/','index')->name('home')->middleware('auth');
+});
