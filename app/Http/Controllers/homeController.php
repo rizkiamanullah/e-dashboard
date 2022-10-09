@@ -37,6 +37,7 @@ class homeController extends Controller
         $this->validate($request, [
             'email' => 'required',
             'password' => 'required',
+            'g-recaptcha-response' => 'recaptcha', //recaptcha validation
         ]);
         $user = User::where(['email' => $request->email,])->first();
         if ($user){
