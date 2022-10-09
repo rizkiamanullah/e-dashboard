@@ -23,12 +23,12 @@ class homeController extends Controller
     }
 
     public function index(){
-        return view('menus.index');
+        return view('menus.main');
     }
 
     public function login(Request $request){
         if ($request->session()->has('user')){
-            return view('menus.index');
+            return view('menus.main');
         }
         return view('menus.login');
     }
@@ -38,10 +38,25 @@ class homeController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
-        $user = User::where('email', $request->email)->first();
+        $user = User::where(['email' => $request->email,])->first();
         if ($user){
-            Session::flash('success', 'Account found');
-            return redirect('login');
+            $user = User::where(['email' => $request->email, 'password' => $request->password])->first();
+            if ($user){
+                $user_data = [
+                    'name' => $user->name,
+                    'email' => $user->email,
+                    'username' => $user->username,
+                    'logged' => 1,
+                ];
+                Session::flash('success', 'Account found');
+                Session::put($user_data);
+                // dd(Session::all());
+                return redirect('/');
+            } else {
+                Session::flash('error', 'Wrong Password');
+                // dd(Session::all());
+                return redirect('login');
+            }
         } else {
             Session::flash('error', 'Email/ Password not found');
             return redirect('login');
@@ -81,7 +96,7 @@ class homeController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
-        redirect('login');
+        Session::flush();
+        return redirect('login');
     }
 }

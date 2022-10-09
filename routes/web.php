@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(homeController::class)->group(function(){
     Route::get('login','login')->name('login');
     Route::get('create_account','signup')->name('signup');
-    Route::get('logout','logout')->name('logout')->middleware('auth');
+    Route::get('logout','logout')->name('logout');
     Route::post('post_login','post_login')->name('post_login');
     Route::post('post_signup','post_signup')->name('post_signup');
 
-    Route::get('/','index')->name('home')->middleware('auth');
+    Route::get('/','index')->name('home');
 });
