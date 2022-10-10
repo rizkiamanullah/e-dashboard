@@ -22,15 +22,15 @@ class homeController extends Controller
         // 
     }
 
-    public function index(){
+    public function index(Request $request){
         return view('menus.main');
     }
 
     public function login(Request $request){
-        if ($request->session()->has('user')){
-            return view('menus.main');
+        if (!$request->session()->has('user')){
+            return view('menus.login');
         }
-        return view('menus.login');
+        return view('menus.main');
     }
 
     public function post_login(Request $request){

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\homeController;
+use App\Http\Controllers\settingsController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
 /*
@@ -21,4 +22,9 @@ Route::controller(homeController::class)->group(function(){
     Route::post('post_signup','post_signup')->name('post_signup');
 
     Route::get('/','index')->name('home');
+});
+
+Route::controller(settingsController::class)->group(function(){
+    Route::get('/settings','index')->name('settings');
+    Route::get('/settings/profile','profile')->name('settings');
 });
