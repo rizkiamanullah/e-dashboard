@@ -22,15 +22,24 @@ class homeController extends Controller
         // 
     }
 
-    public function index(Request $request){
-        return view('menus.main');
+    public function __construct()
+    {
+        
     }
 
-    public function login(Request $request){
-        if (!$request->session()->has('user')){
-            return view('menus.login');
+    public function index(Request $req){
+        if ($req->session()->has('username')){
+            return view('menus.main');
+        } else {
+            return redirect('login');
         }
-        return view('menus.main');
+    }
+
+    public function login(Request $req){
+        if ($req->session()->has('username')) {
+            return redirect('/');
+        }
+        return view('menus.login');
     }
 
     public function post_login(Request $request){
@@ -51,7 +60,6 @@ class homeController extends Controller
                 ];
                 Session::flash('success', 'Account found');
                 Session::put($user_data);
-                // dd(Session::all());
                 return redirect('/');
             } else {
                 Session::flash('error', 'Wrong Password');

@@ -35,9 +35,17 @@
                     </button>
                 </h2>
                 <div id="accordion-color-body-1" aria-labelledby="accordion-color-heading-1">
-                    <div class="p-5 bg-white border border-gray-200 dark:border-gray-700 dark:bg-gray-900 border-b-0">
-                        <p class="mb-2 text-gray-500 dark:text-gray-400">Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons, dropdowns, modals, navbars, and more.</p>
-                        <p class="text-gray-500 dark:text-gray-400">Check out this guide to learn how to <a href="https://flowbite.com/docs/getting-started/introduction/" target="_blank" class="text-blue-600 dark:text-blue-500 hover:underline">get started</a> and start developing websites even faster with components on top of Tailwind CSS.</p>
+                    <div class="p-5 flex w-full bg-white border border-gray-200 dark:border-gray-700 dark:bg-gray-900 border-b-0">
+                        <div class="mb-2">
+                            <img src="{{ URL::to('/') }}/public/img/{{$data['user']['photo']}}" alt="" style="width: 250px;">
+                        </div>
+                        <div class="mb-2 text-gray-500 dark:text-gray-400">
+                            Name : {{ $data['user']['name'] }} <br>
+                            Username : {{$data['user']['username']}} <br>
+                            Email : {{$data['user']['email']}} <br>
+                            Photo : {{$data['user']['photo']}} <br>
+                        </div>
+                        {{-- <p class="text-gray-500 dark:text-gray-400"></p> --}}
                     </div>
                 </div>
 
