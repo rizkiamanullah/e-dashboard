@@ -7,6 +7,9 @@
 
         <title class="drop-shadow-md">{{ config('app.name', 'E-Dashboard') }}</title>
 
+        <!--logo-->
+        <link rel="icon" href="{{ url('img/logo.png') }}">
+
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -35,17 +38,177 @@
         </script>
     
     </head>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #0e6cc4;
+            overflow-x:hidden;
+            overflow-y:hidden;
+        }
+
+        #wavy{
+            margin: 0;
+            padding: 0;
+            background-color: #0e6cc4;
+            overflow-x:hidden;
+            overflow-y:hidden;
+        }
+
+        /*waves****************************/
+
+
+        .box {
+            position: fixed;
+            top: 0;
+            transform: rotate(80deg);
+            left: 0;
+        }
+
+        .wave {
+            position: fixed;
+            top: 0;
+            left: 0;
+            opacity: .4;
+            position: absolute;
+            top: 3%;
+            left: 10%;
+            background: #0af;
+            width: 1500px;
+            height: 1300px;
+            margin-left: -150px;
+            margin-top: -250px;
+            transform-origin: 50% 48%;
+            border-radius: 43%;
+            animation: drift 7000ms infinite linear;
+        }
+
+        .wave.-three {
+            animation: drift 7500ms infinite linear;
+            position: fixed;
+            background-color: #77daff;
+        }
+
+        .wave.-two {
+            animation: drift 3000ms infinite linear;
+            opacity: .1;
+            background: black;
+            position: fixed;
+        }
+
+        .box:after {
+        content: '';
+        display: block;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -11;
+        transform: translate3d(0, 0, 0);
+        }
+
+        @keyframes drift {
+        from { transform: rotate(0deg); }
+        from { transform: rotate(360deg); }
+        }
+
+        /*LOADING SPACE*/
+
+        .contain {
+            animation-delay: 4s;
+            z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-flow: row nowrap;
+            flex-flow: row nowrap;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+
+            background: #25a7d7;
+            background: -webkit-linear-gradient(#25a7d7, #2962FF);
+            background: linear-gradient(#25a7d7, #25a7d7);
+        }
+
+        .icon {
+        width: 100px;
+        height: 100px;
+        margin: 0 5px;
+        }
+
+        /*Animation*/
+        .icon:nth-child(2) img {-webkit-animation-delay: 0.2s;animation-delay: 0.2s}
+        .icon:nth-child(3) img {-webkit-animation-delay: 0.3s;animation-delay: 0.3s}
+        .icon:nth-child(4) img {-webkit-animation-delay: 0.4s;animation-delay: 0.4s}
+
+        .icon img {
+        -webkit-animation: anim 2s ease infinite;
+        animation: anim 2s ease infinite;
+        -webkit-transform: scale(0,0) rotateZ(180deg);
+        transform: scale(0,0) rotateZ(180deg);
+        }
+
+        @-webkit-keyframes anim{
+        0% {
+            -webkit-transform: scale(0,0) rotateZ(-90deg);
+            transform: scale(0,0) rotateZ(-90deg);opacity:0
+        }
+        30% {
+            -webkit-transform: scale(1,1) rotateZ(0deg);
+            transform: scale(1,1) rotateZ(0deg);opacity:1
+        }
+        50% {
+            -webkit-transform: scale(1,1) rotateZ(0deg);
+            transform: scale(1,1) rotateZ(0deg);opacity:1
+        }
+        80% {
+            -webkit-transform: scale(0,0) rotateZ(90deg);
+            transform: scale(0,0) rotateZ(90deg);opacity:0
+        }
+        }
+
+        @keyframes anim{
+        0% {
+            -webkit-transform: scale(0,0) rotateZ(-90deg);
+            transform: scale(0,0) rotateZ(-90deg);opacity:0
+        }
+        30% {
+            -webkit-transform: scale(1,1) rotateZ(0deg);transform: scale(1,1) rotateZ(0deg);opacity:1
+        }
+        50% {
+            -webkit-transform: scale(1,1) rotateZ(0deg);
+            transform: scale(1,1) rotateZ(0deg);opacity:1
+        }
+        80% {
+            -webkit-transform: scale(0,0) rotateZ(90deg);
+            transform: scale(0,0) rotateZ(90deg);opacity:0
+        }
+        }
+    </style>
     @if (Session::has('username'))
     <body class="m-5 bg-white dark:bg-gray-900">
     @else
-    <body class="m-5 bg-gradient-to-r from-blue-300 via-purple-300 to-orange-400">
+    <body class="m-5">
+        <div class='box'>
+            <div class='wave -one'></div>
+            <div class='wave -two'></div>
+            <div class='wave -three'></div>
+        </div>
     @endif
         <nav class="bg-slate-400 border-gray-200 px-2 sm:px-4 py-2.5 rounded bg-transparent">
         <div class="container flex flex-wrap justify-between items-center mx-auto">
             @if (Session::has('username'))
-                <a href="#" class="flex items-center">
-                    <img src="{{URL::to('/')}}/img/logo.png" class="mr-3 h-6 sm:h-9" width="40px" alt="Flowbite Logo">
-                    <span class="self-center text-xl font-semibold text-gray-600 whitespace-nowrap dark:text-white">E-Dashboard</span>
+                <a href="https://e-dashboard.com/" class="flex items-center">
+                    <img src="{{URL::to('/')}}/img/logo_long_light.png" class="mr-3 h-6 sm:h-9" width="100%" alt="Flowbite Logo">
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
@@ -95,9 +258,9 @@
                     </li>
                 </ul>
                 @else
-                <a href="https://excelIguana.com/" class="flex items-center">
-                    <img src="{{URL::to('/')}}/img/logo.png" class="mr-3 h-6 sm:h-9" width="40px" alt="Flowbite Logo">
-                    <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">E-Dashboard</span>
+                <a href="https://e-dashboard.com/" class="flex items-center" style="z-index: 20">
+                    <img src="{{URL::to('/')}}/img/logo.png" class="mr-3 h-6 sm:h-9" width="100%" alt="Flowbite Logo">
+                    {{-- <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">E-Dashboard</span> --}}
                 </a>
                 <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
@@ -251,29 +414,23 @@
                             </li>
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                         </ul>
                         <ul class="pt-4 space-y-9 p-3 mt-4 border-t border-gray-200 dark:border-gray-700">
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                             <li>
                                 <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
-    
                             </li>
                         </ul>
                     </div>
@@ -281,7 +438,7 @@
                 </div>
                 @endif
             </div>
-            <div class="w-full px-9">
+            <div class="w-full px-9" style="z-index: 20">
                 @yield('content')
             </div>
         </div>

@@ -23,8 +23,7 @@
             </div>
         </div>
         <div class="space-y-3 main-content">
-            {{-- <h1 class=" font-bold">Selamat Datang di E-Dashboard</h1> --}}
-            <div class="rounded-md h-49 w-full bg-gradient-to-r from-blue-300 via-purple-300 to-orange-400">
+            <div id="wavy" class="rounded-md h-49 w-full bg-gradient-to-r from-blue-300 via-purple-200 to-blue-500">
                 <br><br>
                 <p class=" text-gray-800 font-bold mt-4 text-9xl">Home</p>
             </div>
