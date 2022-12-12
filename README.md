@@ -1,3 +1,28 @@
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57005303/206985423-3d366cae-7f29-4580-b326-b623fbfda1c3.png">
+</p>
+
+## E-Dashboard
+
+The E-Dashboard website is a technical solution designed to provide a comprehensive, user-friendly interface for managing various aspects of a company or business. The E-Dashboard utilizes a responsive web design, ensuring that it is accessible and easy to use on a variety of devices, including desktop computers, laptops, tablets, and smartphones. The website features a wide range of features and functions, including real-time data visualization, customizable reports and graphs, and integration with popular business software such as CRM and accounting systems. The E-Dashboard is built using modern web development technologies such as HTML, CSS, JavaScript, and a variety of frameworks and libraries to provide a smooth and seamless user experience. Additionally, the E-Dashboard is backed by a robust and scalable server architecture, ensuring that it can handle high traffic volumes and support the growing needs of your business. Overall, the E-Dashboard is a powerful and versatile tool that can help you optimize and streamline your business operations.
+
+## Overview
+<p align="center>
+<img src="https://user-images.githubusercontent.com/57005303/206993561-aba53850-8d25-4d56-8ee5-a6b21ea84aae.png">
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57005303/206992888-35f45dc4-9a2a-4e61-af1b-02819ce20950.png">
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57005303/206993108-55c612c6-a97d-4bec-ab02-35c73bcdc44d.png">
+</p>
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/57005303/206993411-e372e81b-f212-48b9-a85d-ec88a8d87cd4.png">
+</p>
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
