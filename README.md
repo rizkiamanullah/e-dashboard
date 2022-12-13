@@ -2,9 +2,9 @@
 <img src="https://user-images.githubusercontent.com/57005303/206985423-3d366cae-7f29-4580-b326-b623fbfda1c3.png">
 </p>
 
-## E-Dashboard
+## e-Dashboard
 
-The E-Dashboard website is a technical solution designed to provide a comprehensive, user-friendly interface for managing various aspects of a company or business. The E-Dashboard utilizes a responsive web design, ensuring that it is accessible and easy to use on a variety of devices, including desktop computers, laptops, tablets, and smartphones. The website features a wide range of features and functions, including real-time data visualization, customizable reports and graphs, and integration with popular business software such as CRM and accounting systems. The E-Dashboard is built using modern web development technologies such as HTML, CSS, JavaScript, and a variety of frameworks and libraries to provide a smooth and seamless user experience. Additionally, the E-Dashboard is backed by a robust and scalable server architecture, ensuring that it can handle high traffic volumes and support the growing needs of your business. Overall, the E-Dashboard is a powerful and versatile tool that can help you optimize and streamline your business operations.
+The e-Dashboard website is a technical solution designed to provide a comprehensive, user-friendly interface for managing various aspects of a company or business. The e-Dashboard utilizes a responsive web design, ensuring that it is accessible and easy to use on a variety of devices, including desktop computers, laptops, tablets, and smartphones. The website features a wide range of features and functions, including real-time data visualization, customizable reports and graphs, and integration with popular business software such as CRM and accounting systems. The e-Dashboard is built using modern web development technologies such as HTML, CSS, JavaScript, and a variety of frameworks and libraries to provide a smooth and seamless user experience. Additionally, the e-Dashboard is backed by a robust and scalable server architecture, ensuring that it can handle high traffic volumes and support the growing needs of your business. Overall, the e-Dashboard is a powerful and versatile tool that can help you optimize and streamline your business operations.
 
 ## Overview
 <p align="center>

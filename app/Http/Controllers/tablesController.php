@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Session\Session;
+use App\Models\UserLog;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 
-class settingsController extends Controller
+class tablesController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -22,10 +22,11 @@ class settingsController extends Controller
     public function __construct()
     {
         $this->users = new User();
+        $this->user_chat = new UserLog();
     }
 
     public function index(Request $req){
         $data['user'] = $this->users->where('username', $req->session()->get('username'))->first();
-        return view('menus.settings', compact('data'));
+        return view('menus.tables', compact('data'));
     }
 }

@@ -7,7 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+
+use function PHPUnit\Framework\at;
 
 class homeController extends Controller
 {
@@ -28,48 +31,29 @@ class homeController extends Controller
     }
 
     public function index(Request $req){
-        if ($req->session()->has('username')){
-            return view('menus.main');
-        } else {
-            return redirect('login');
-        }
+        return view('menus.main');
     }
 
     public function login(Request $req){
-        if ($req->session()->has('username')) {
-            return redirect('/');
-        }
         return view('menus.login');
     }
 
     public function post_login(Request $request){
-        $this->validate($request, [
-            'email' => 'required',
+        $credentials = [
+            'username' => 'required',
             'password' => 'required',
             'g-recaptcha-response' => 'recaptcha', //recaptcha validation
-        ]);
-        $user = User::where(['email' => $request->email,])->first();
-        if ($user){
-            $user = User::where(['email' => $request->email, 'password' => $request->password])->first();
-            if ($user){
-                $user_data = [
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'username' => $user->username,
-                    'logged' => 1,
-                ];
-                Session::flash('success', 'Account found');
-                Session::put($user_data);
-                return redirect('/');
-            } else {
-                Session::flash('error', 'Wrong Password');
-                // dd(Session::all());
-                return redirect('login');
-            }
-        } else {
-            Session::flash('error', 'Email/ Password not found');
-            return redirect('login');
+        ];
+        $this->validate($request, $credentials);
+
+        $credentials = $request->only('username', 'password');
+        if (Auth::attempt($credentials)) {
+            // Authentication passed...
+            Session::put(['username' => Auth::user()->username]);
+            return redirect()->intended('/');
         }
+        Session::flash('error', 'Email/ Password not found');
+        return redirect('login');
     }
 
     public function signup()
@@ -95,7 +79,7 @@ class homeController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'username' => $request->input('username'),
-            'password' => $request->input('password'),
+            'password' => Hash::make($request->input('password')),
             'photo' => $filename,
         ];
         $data = $data + $this->created_data_email();
