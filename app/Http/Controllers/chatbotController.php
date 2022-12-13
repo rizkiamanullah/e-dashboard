@@ -73,7 +73,8 @@ class chatbotController extends Controller
         ]);
         $complete = json_decode($complete);
         $text = str_replace('AI Assistant', '', $complete->choices[0]->text);
-        $text = str_replace('Assistant', '', $text);
+        $text = str_replace('AI assistant ', '', $text);
+        $text = str_replace('assistant', '', $text);
         $text = str_replace(':', '', $text);
         $complete = [
             'id_chatbot_log' => 1,
