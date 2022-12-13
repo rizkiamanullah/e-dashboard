@@ -75,8 +75,9 @@ class chatbotController extends Controller
         $text = str_replace('AI Assistant', '', $complete->choices[0]->text);
         $text = str_replace('AI assistant ', '', $text);
         $text = str_replace('assistant', '', $text);
+        $text = str_replace('Assistant', '', $text);
         $text = str_replace(':', '', $text);
-        $text = str_replace('?', '', $text);
+        // $text = str_replace('?', '', $text);
         $complete = [
             'id_chatbot_log' => 1,
             'sent_at' => date('Y-m-d H:i:s'),
