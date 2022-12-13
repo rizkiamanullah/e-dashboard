@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Queue\RedisQueue;
 use Orhanerday\OpenAi\OpenAi;
+use SebastianBergmann\Complexity\Complexity;
 
 class chatbotController extends Controller
 {
@@ -29,6 +30,7 @@ class chatbotController extends Controller
         $this->users = new User();
         $this->user_chat = new UserLog();
         $this->bot_chat = new BotLog();
+        $this->open_ai = $this->init_bot();
     }
 
     public function index(Request $req){
@@ -40,25 +42,44 @@ class chatbotController extends Controller
         return view('menus.chatbot', compact('data'));
     }
 
-    public function bot_sent(Request $req){
-        $open_ai_key = ('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');
+    public function init_bot(){
+        // if (($this->user_chat->first())==NULL){
+        //     $complete = [
+        //         'id_chatbot_log' => 0,
+        //         'answered' => 0,
+        //         'sent_at' => date('Y-m-d H:i:s'),
+        //         'sent_message' => `The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. Human: Hello, who are you? AI: I am an AI created by OpenAI. How can I help you today? Human:`,
+        //     ];
+        //     UserLog::create($complete);
+        // }
+        $open_ai_key = env('SECRET_KEY_GPT');
         $open_ai = new OpenAi($open_ai_key);
+        return $open_ai;
+    }
 
+    public function bot_sent(Request $req){
+        $open_ai = $this->init_bot();
         $get_user_log = $this->user_chat->where(['id_chatbot_log' => 0, 'answered' => 0])->orderByDesc('id')->first();
-        // dd($get_user_log);
+        $query = "The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly. Human: ";
         $complete = $open_ai->completion([
-            'model' => 'text-davinci-002',
-            'prompt' => $get_user_log->sent_message,
+            'model' => 'text-davinci-003',
+            'prompt' => $query.$get_user_log->sent_message,
             'temperature' => 0.9,
             'max_tokens' => 150,
-            'frequency_penalty' => 0,
-            'presence_penalty' => 0.6,
+            "top_p" => 1,
+            "frequency_penalty" => 0.0,
+            "presence_penalty" => 0.6,
+            "stop" => ['Human:','AI:'],
         ]);
         $complete = json_decode($complete);
+        $text = str_replace('AI Assistant', '', $complete->choices[0]->text);
+        $text = str_replace('Assistant', '', $text);
+        $text = str_replace(':', '', $text);
         $complete = [
             'id_chatbot_log' => 1,
             'sent_at' => date('Y-m-d H:i:s'),
-            'sent_message' => $complete->choices[0]->text,
+            'prompt' => $get_user_log->sent_message,
+            'sent_message' => $text,
         ];
         if(UserLog::create($complete)){
             UserLog::where('id', $get_user_log->id)->update(['answered' => 0]);
@@ -69,7 +90,7 @@ class chatbotController extends Controller
     public function user_sent(Request $req){
         $data = [
             'id_chatbot_log' => 0,
-            'sent_message' => $req->input_field,
+            'sent_message' => $req->s,
             'sent_at' => date('Y-m-d H:i:s'),
         ];
         try{

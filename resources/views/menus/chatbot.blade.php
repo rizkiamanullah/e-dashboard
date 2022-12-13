@@ -21,6 +21,7 @@
                         <div class="p-3 flex justify-start rounded min-w-0 max-w-[45%] bg-blue-200">
                             <p class="text-black">Welcome to Chatbot BETA. Powered by GPT-3. <br> Write something to start the chatbot!</p>
                         </div>
+                        <a href="/clear_log" class="ml-3 mt-2 text-blue-500">Clear Message</a>
                     </div>
                     @if (count($data['user_chat']) > 0)
                         @foreach ($data['user_chat'] as $uc)
@@ -47,11 +48,11 @@
                 <form id="onSubmit" action="/user_sent" method="post">
                 @csrf
                 <div class="flex items-center mt-2">
-                        <input name="input_field" type="text" placeholder="Type something" class="w-[95%] rounded bg-gray-300 border-white dark:bg-gray-800 dark:border-gray-700">
-                        <button type="submit" class="bg-blue-400 p-2 rounded-lg ml-2 px-5 hover:bg-blue-200">
-                            <svg class="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                        </button>
-                    </div>
+                    <input name="input_field" type="text" placeholder="Type something" class="w-[95%] rounded bg-gray-300 border-white dark:bg-gray-800 dark:border-gray-700">
+                    <button type="submit" class="bg-blue-400 p-2 rounded-lg ml-2 px-5 hover:bg-blue-200">
+                        <svg class="w-6 h-6 rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                    </button>
+                </div>
                 </form>
             </div>
         </div>
@@ -74,6 +75,7 @@ $.ajaxSetup({
         e.preventDefault();
         var $form = $(this),
         term = $form.find("input[name='input_field']").val();
+        console.log(term);
         url = $form.attr("action");
 
         $("input[name='input_field']").val('');
@@ -109,7 +111,6 @@ $.ajaxSetup({
                             <p class="text-black">${val}</p>
                         </div>
                     </div>
-                    <a href="/clear_log" class="ml-3 mt-2 text-blue-500">Clear Message</a>
                     `;
                 });
                 $("#chat_box").append(html); //// For Append
