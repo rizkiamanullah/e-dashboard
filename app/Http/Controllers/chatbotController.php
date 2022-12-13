@@ -32,6 +32,7 @@ class chatbotController extends Controller
     }
 
     public function index(Request $req){
+        // UserLog::truncate();
         $data['user'] = $this->users->where('username', $req->session()->get('username'))->first();
         $data['user_chat'] = $this->user_chat->all();
         // $data['bot_chat'] = $this->bot_chat->all();
@@ -40,13 +41,13 @@ class chatbotController extends Controller
     }
 
     public function bot_sent(Request $req){
-        $open_ai_key = ('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');
+        $open_ai_key = ('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');
         $open_ai = new OpenAi($open_ai_key);
 
-        $get_user_log = $this->user_chat->where(['id_chatbot_log' => 0])->orderByDesc('id')->first();
+        $get_user_log = $this->user_chat->where(['id_chatbot_log' => 0, 'answered' => 0])->orderByDesc('id')->first();
         // dd($get_user_log);
         $complete = $open_ai->completion([
-            'model' => 'davinci',
+            'model' => 'text-davinci-002',
             'prompt' => $get_user_log->sent_message,
             'temperature' => 0.9,
             'max_tokens' => 150,
@@ -60,6 +61,7 @@ class chatbotController extends Controller
             'sent_message' => $complete->choices[0]->text,
         ];
         if(UserLog::create($complete)){
+            UserLog::where('id', $get_user_log->id)->update(['answered' => 0]);
             return response()->json($complete);
         }
     }

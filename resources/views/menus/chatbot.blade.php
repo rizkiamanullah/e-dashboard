@@ -17,8 +17,12 @@
             </div>
             <div class="font-light p-2 text-gray-900 dark:text-white">
                 <div id="chat_box" class="overflow-y-auto p-3 space-y-3 border border-white rounded h-[290px] dark:border-gray-700">
+                    <div class="w-full">
+                        <div class="p-3 flex justify-start rounded min-w-0 max-w-[45%] bg-blue-200">
+                            <p class="text-black">Welcome to Chatbot BETA. Powered by GPT-3. <br> Write something to start the chatbot!</p>
+                        </div>
+                    </div>
                     @if (count($data['user_chat']) > 0)
-                    <a href="/clear_log" class="ml-3 mt-2 text-blue-500">Clear Message</a>
                         @foreach ($data['user_chat'] as $uc)
                         @if ($uc->id_chatbot_log == 0)
                             <div class="w-full flex justify-end">
@@ -37,11 +41,7 @@
                         @endif
                         @endforeach
                     @endif
-                    {{-- <div class="w-full flex justify-end">
-                        <div class="p-3 rounded min-w-0 max-w-[45%] bg-blue-500">
-                            <p class="text-black">corrupti aperiam veniam, assumenda ipsam velit harum voluptate iste vero accusamus maxime libero.</p>
-                        </div>
-                    </div> --}}
+                    
                 </div>
 
                 <form id="onSubmit" action="/user_sent" method="post">
@@ -60,34 +60,68 @@
 @endsection
 @section('js')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- for post csrf --}}
+<script type="text/javascript">
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+</script>
 <script>
-    // $('#onSubmit').submit(function(e){
-    $(document).ready(function(){
-        //e.preventDefault();
-        $.ajax({
-        type: 'GET', //THIS NEEDS TO BE GET
-        url: '/bot_sent',
-        data: 'json',
-        success: function (data) {
-            console.log(data);
-            var html = "";
-            $.each(data, function (key, val) {
-                console.log(val);
-                html = `
-                <div class="w-full">
-                    <div class="p-3 flex justify-start rounded min-w-0 max-w-[45%] bg-blue-200">
-                        <p class="text-black">${val}</p>
-                    </div>
+    // $('#input_button').click(function(){
+    $('#onSubmit').submit(function(e){
+        e.preventDefault();
+        var $form = $(this),
+        term = $form.find("input[name='input_field']").val();
+        url = $form.attr("action");
+
+        $("input[name='input_field']").val('');
+
+        ins_html = `
+        <div class="w-full flex justify-end">
+            <div class="p-3 rounded min-w-0 max-w-[45%] bg-blue-500">
+                <div class="flex justify-start">
+                    <p class="text-black">${term}</p>
                 </div>
-                `;
-            });
-             $("#chat_box").append(html); //// For Append
-            //  $("#mydiv").html(your_html)   //// For replace with previous one
-        },
-        error: function() { 
-            console.log(data);
-        }
+            </div>
+        </div>
+        `;
+        $("#chat_box").append(ins_html); //// For Append
+        $("#chat_box").animate({ scrollTop: $('#chat_box').prop("scrollHeight")}, 1000);
+
+
+        var posting = $.post( url, { s: term } );
+
+        posting.done(function(data){
+            $.ajax({
+            type: 'GET', //THIS NEEDS TO BE GET
+            url: '/bot_sent',
+            data: 'json',
+            success: function (data) {
+                console.log(data);
+                var html = "";
+                $.each(data, function (key, val) {
+                    console.log(val);
+                    html = `
+                    <div class="w-full">
+                        <div class="p-3 flex justify-start rounded min-w-0 max-w-[45%] bg-blue-200">
+                            <p class="text-black">${val}</p>
+                        </div>
+                    </div>
+                    <a href="/clear_log" class="ml-3 mt-2 text-blue-500">Clear Message</a>
+                    `;
+                });
+                $("#chat_box").append(html); //// For Append
+                $("#chat_box").animate({ scrollTop: $('#chat_box').prop("scrollHeight")}, 1000);
+                //  $("#mydiv").html(your_html)   //// For replace with previous one
+            },
+            error: function() { 
+                console.log(data);
+            }
+        });
     });
+
     })
 </script>
 @endsection
