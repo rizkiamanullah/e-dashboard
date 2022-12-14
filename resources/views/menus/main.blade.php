@@ -12,7 +12,7 @@
         </div>
         <span class="sr-only">Loading...</span>
     </div> --}}
-    <div class="p-6 w-full rounded bg-gray-300 border-gray-700 dark:bg-gray-800 text-white">
+    <div class="p-6 w-full rounded bg-gray-300/75 border-gray-700 dark:bg-gray-800/75 text-white">
         <div class="space-y-3 main-skeleton">
             {{-- <div class="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div> --}}
             <div class="flex animate-pulse justify-center items-center w-full h-48 bg-gray-300 rounded sm:w-96 dark:bg-gray-700">
@@ -23,12 +23,48 @@
             </div>
         </div>
         <div class="space-y-3 main-content">
-            <div id="wavy" class="rounded-md h-49 w-full bg-gradient-to-r from-blue-300 via-purple-200 to-blue-500">
+            <div class="rounded-md h-[35] w-full bg-gradient-to-r from-blue-300 via-purple-200 to-blue-500">
                 <br><br>
                 <p class=" text-gray-800 font-bold mt-4 text-9xl">Home</p>
             </div>
             <div class="font-light p-2 text-gray-900 dark:text-white">
                 Silahkan gunakan sidebar untuk melihat hal yang ditawarkan oleh dashboard ini.
+            </div>
+        </div>
+        <div class="space-y-3 second-content">
+            <div class="columns-2 font-light p-2 text-gray-900 dark:text-white">
+                <div class="py-2">
+                    <div class="rounded-md p-4 h-[35] bg-gray-300/75 hover:bg-blue-100 hover:text-black dark:bg-gray-800/75">
+                        <a href="/chatbot" class="flex justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                            <p class="pl-2">Chatbot</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <div class="rounded-md p-4 h-[35] bg-gray-300/75 hover:bg-blue-100 hover:text-black dark:bg-gray-800/75">
+                        <a href="/tables" class="flex justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <p class="pl-2">Tables</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <div class="rounded-md p-4 h-[35] bg-gray-300/75 hover:bg-blue-100 hover:text-black dark:bg-gray-800/75">
+                        <a href="/chatbot" class="flex justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
+                            <p class="pl-2">Chatbot</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="py-2">
+                    <div class="rounded-md p-4 h-[35] bg-gray-300/75 hover:bg-blue-100 hover:text-black dark:bg-gray-800/75">
+                        <a href="/tables" class="flex justify-center">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                            <p class="pl-2">Tables</p>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

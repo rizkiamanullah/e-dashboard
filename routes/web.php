@@ -35,6 +35,11 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::controller(tablesController::class)->group(function(){
     Route::get('/tables','index')->name('tables')->middleware('auth');
+    Route::get('/add_data','add_data')->name('tables')->middleware('auth');
+    Route::get('/edit_data/{id}','edit_data')->name('tables')->middleware('auth');
+    Route::get('/destroy_item/{id}','destroy_item')->middleware('auth')->name('item.destroy');
+    Route::post('/update_data/{id}','update_data')->name('tables')->middleware('auth');
+    Route::post('/store_data','store_data')->name('tables')->middleware('auth');
 });
 
 Route::controller(settingsController::class)->group(function(){
